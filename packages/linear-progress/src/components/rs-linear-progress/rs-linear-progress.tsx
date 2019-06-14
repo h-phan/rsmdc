@@ -1,109 +1,93 @@
-import { Component, Prop, Element, Method, h } from '@stencil/core';
-import { MDCLinearProgress } from '@material/linear-progress';
-import { _stylingElement } from '../../utils/utils';
+import { Component, Prop, Element, Method, h } from '@stencil/core'
+import { MDCLinearProgress } from '@material/linear-progress'
+import { _stylingElement } from '../../utils/utils'
 
 @Component({
   tag: "rs-linear-progress",
   styleUrl: 'rs-linear-progress.scss',
   shadow: true
 })
-export class MyComponent{
+export class MyComponent {
 
-  @Element() progressEl : HTMLElement;
-  @Prop() close : boolean = false;
-  @Prop() type : string = '';
-  @Prop() reversed: boolean = false;
-  @Prop() progressbarcolor : string;
-  @Prop() bufferbarcolor: string ;
-  @Prop() progress: number = 0 ;
-  @Prop() buffer: number = 0 ;
+  @Element() progressEl : HTMLElement
+  @Prop() close : boolean = false
+  @Prop() type : string = ''
+  @Prop() reversed: boolean = false
+  @Prop() progressbarcolor : string
+  @Prop() bufferbarcolor: string
+  @Prop() progress: number = 0
+  @Prop() buffer: number = 0
 
   @Method()
-  async setProgress(value: number){
-    // Kiem tra xem co phai so hay khong?
-    // Kiem tra value co nam trong khoang [0,1] hay khong?
-    this.mdcProgress.progress= value;
+  async setProgress(value: number) {
+    this.mdcProgress.progress= value
   }
   @Method()
-  async setBuffer(value: number){
-    // Kiem tra xem co phai so hay khong?
-    // Kiem tra value co nam trong khoang [0,1] hay khong?
+  async setBuffer(value: number) {
     this.mdcProgress.buffer= value;
   }
 
   @Method() 
   async setBarColor(color: string) {
-    // Kiem tra co phai color hay khong?
-    this.progressEl.style.setProperty('--mdc-linear-progress_-bar-inner--background-color', color);
+    this.progressEl.style.setProperty('--mdc-linear-progress_-bar-inner--background-color', color)
   }
 
   @Method() 
   async setBufferColor(color: string) {
-    // Kiem tra co phai color hay khong?
-    this.progressEl.style.setProperty('--mdc-linear-progress-buffer-color--background-color', color);
+    this.progressEl.style.setProperty('--mdc-linear-progress-buffer-color--background-color', color)
   }
   @Method()
   async setHeight(height: number) {
-    // Kiem tra co phai so nguyen > 0 hay khong
-    this.progressEl.style.setProperty('--mdc-linear-progress--height', `${height}px`);
+    height = height > 0 ? height : (-1 * height)
+    this.progressEl.style.setProperty('--mdc-linear-progress--height', `${height}px`)
   }
-  
-  // const myComponent = document.querySelector('my-component');
-  // myComponent.stylingElement([{
-  //     selector: "#com-1",
-  //     style: "height:1px"
-  //   },{
-  //     selector: "#com-3",
-  //     style: "display: none;"
-  //   }]);
+
   @Method()
-  async stylingInnerElement(value){
-    if(value){
+  async stylingInnerElement(value: any) {
+    if(value) {
       _stylingElement(this.progressEl, value)
     }
   }
 
-  progressBar:any;
-  mdcProgress:any;
-  innerProgressBar:any;
-  bufferProgressBar:any;
+  progressBar:any
+  mdcProgress:any
+  innerProgressBar:any
+  bufferProgressBar:any
 
-  componentWillLoad(){
-    if(this.progressbarcolor){
-      this.progressEl.style.setProperty('--mdc-linear-progress_-bar-inner--background-color',this.progressbarcolor);
+  componentWillLoad() {
+    if(this.progressbarcolor) {
+      this.progressEl.style.setProperty('--mdc-linear-progress_-bar-inner--background-color',this.progressbarcolor)
     }
   }
 
-  componentDidLoad(){
+  componentDidLoad() {
     this.mdcProgress = new MDCLinearProgress(this.progressBar)
-    this.mdcProgress.progress= this.progress;
-    this.mdcProgress.buffer = this.buffer;
+    this.mdcProgress.progress= this.progress
+    this.mdcProgress.buffer = this.buffer
   }
-  componentDidUnload(){
+  componentDidUnload() {
     this.mdcProgress.destroy()
   }
 
   // NG
-  getProgressClassName(){
-    let className: string = "mdc-linear-progress";
+  getProgressClassName() {
+    let className: string = "mdc-linear-progress"
 
-    if(this.type === "indeterminate"){
-        className = ` ${className} mdc-linear-progress--indeterminate`;
+    if(this.type === "indeterminate") {
+        className = `${className} mdc-linear-progress--indeterminate`
     }
-    if(this.reversed){
-        className = ` ${className} mdc-linear-progress--reversed`;
+    if(this.reversed) {
+        className = `${className} mdc-linear-progress--reversed`
     }
-    if(this.close){
-        className = ` ${className} mdc-linear-progress--closed`;
+    if(this.close) {
+        className = `${className} mdc-linear-progress--closed`
     }
-    return className;
+    return className
   }
-
-  
 
   render() {
     return [
-      <div role="progressbar" ref={(progressBar) => { this.progressBar = progressBar; }}
+      <div role="progressbar" ref={(progressBar) => { this.progressBar = progressBar }}
         class={this.getProgressClassName()}>
         <div class="mdc-linear-progress__buffering-dots"></div>
         <div class="mdc-linear-progress__buffer"></div>
