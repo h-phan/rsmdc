@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+  <title>Stencil Component Starter</title>
+
+  <script type="module" src="/build/linear-progress.esm.js"></script>
+  <script nomodule src="/build/linear-progress.js"></script>
+
+</head>
+<body>
+
+  <rs-linear-progress id="com-1" progressbarcolor="green" type="indeterminate"></rs-linear-progress>
+  <br/>
+  <rs-linear-progress id="com-2" progressbarcolor="yellow" type="indeterminate" reversed></rs-linear-progress>
+  <br/>
+  <rs-linear-progress id="com-3" progressbarcolor="red" progress="0.5" buffer="0.75" reversed></rs-linear-progress>
+  <br/>
+  <rs-linear-progress id="com-4" progressbarcolor="green" progress="0.35" buffer="0.75"></rs-linear-progress>
+  <br/>
+  <rs-linear-progress id="com-5" progressbarcolor="blue" close></rs-linear-progress>
+
+</body>
+</html>
