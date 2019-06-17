@@ -16,10 +16,7 @@ export namespace Components {
     'progress': number;
     'progressbarcolor': string;
     'reversed': boolean;
-    'setBarColor': (color: string) => Promise<void>;
     'setBuffer': (value: number) => Promise<void>;
-    'setBufferColor': (color: string) => Promise<void>;
-    'setHeight': (height: number) => Promise<void>;
     'setProgress': (value: number) => Promise<void>;
     'stylingInnerElement': (value: any) => Promise<void>;
     'type': string;

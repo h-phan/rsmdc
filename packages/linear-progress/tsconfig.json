@@ -18,7 +18,8 @@
   },
   "include": [
     "src",
-    "types/jsx.d.ts"
+    "types/jsx.d.ts",
+    "tslint.js"
   ],
   "exclude": [
     "node_modules"

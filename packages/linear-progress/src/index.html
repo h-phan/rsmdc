@@ -7,19 +7,36 @@
 
   <script type="module" src="/build/linear-progress.esm.js"></script>
   <script nomodule src="/build/linear-progress.js"></script>
+  <script src="https://cdn.rawgit.com/medialize/sass.js/master/dist/sass.sync.js"></script>
 
 </head>
 <body>
 
-  <rs-linear-progress id="com-1" progressbarcolor="green" type="indeterminate"></rs-linear-progress>
+  <rs-linear-progress class="download-progress" progress="0.3" buffer="0.5"></rs-linear-progress>
   <br/>
-  <rs-linear-progress id="com-2" progressbarcolor="yellow" type="indeterminate" reversed></rs-linear-progress>
-  <br/>
-  <rs-linear-progress id="com-3" progressbarcolor="red" progress="0.5" buffer="0.75" reversed></rs-linear-progress>
-  <br/>
-  <rs-linear-progress id="com-4" progressbarcolor="green" progress="0.35" buffer="0.75"></rs-linear-progress>
-  <br/>
-  <rs-linear-progress id="com-5" progressbarcolor="blue" close></rs-linear-progress>
 
 </body>
+<style type="text/scss">
+  .download-progress {
+    @include rs-linear-progress-type("");
+    @include rs-linear-progress-bar-color("#6200ff");
+    @include rs-linear-progress-buffer-color("#000");
+  }
+</style>
+<script>
+  (async function() {
+    const res = await fetch('./components/rs-linear-progress/_rs-mixins.scss')
+    console.log(res)
+    const mixinScss = await res.text()
+    const styleScss = document.querySelector('style[type="text/scss"]').textContent
+    console.log(styleScss)
+    Sass.compile(mixinScss + styleScss, result => {
+      style = document.createElement('style')
+      style.type = 'text/css'
+      style.appendChild(document.createTextNode(result.text))
+    console.log(result)
+      document.head.appendChild(style)
+    })
+  })()
+</script>
 </html>

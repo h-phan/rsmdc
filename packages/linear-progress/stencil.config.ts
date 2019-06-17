@@ -6,6 +6,9 @@ export const config: Config = {
   outputTargets: [
     {
       type: 'dist',
+      copy: [
+        { src: 'components/rs-linear-progress/rs-mixins.scss' }
+      ],
       esmLoaderPath: '../loader'
     },
     {
@@ -14,7 +17,9 @@ export const config: Config = {
     {
       type: 'www',
       serviceWorker: null, // disable service workers
-      baseUrl: 'http://localhost'
+      copy: [
+        { src: 'components/rs-linear-progress/_rs-mixins.scss' }
+      ],
     }
   ],
   plugins: [
