@@ -7,7 +7,7 @@ import { _stylingElement } from "../../utils/utils"
   styleUrl: "rs-linear-progress.scss",
   shadow: true
 })
-export class MyComponent {
+export class RSLinearProgress {
 
   @Element() progressEl : HTMLElement
   @Prop() close : boolean = false
@@ -16,7 +16,7 @@ export class MyComponent {
   @Prop() progressbarcolor : string
   @Prop() bufferbarcolor: string = "#e6e6e6"
   @Prop() progress: number = 0
-  @Prop() buffer: number = 0
+  @Prop() buffer: number = 1
   @State() className: string = "mdc-linear-progress"
 
   @Method()

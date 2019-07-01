@@ -1,7 +1,13 @@
-@mixin rs-linear-progress-type($type: indeterminate, $option: none) {
+@mixin rs-linear-progress-type($type: none, $option: none) {
   --rs-linear-progres-indeterminate: #{$type == indeterminate};
-  --rs-linear-progres-reversed: #{$option == reversed};
-  --rs-linear-progres-close: #{$option == close};
+}
+
+@mixin rs-linear-progress-reversed($reversed: none) {
+  --rs-linear-progres-reversed: #{$reversed == reversed};
+}
+
+@mixin rs-linear-progress-close($close: none) {
+  --rs-linear-progres-close: #{$close == close};
 }
 
 @mixin rs-linear-progress-bar-color($color) {
