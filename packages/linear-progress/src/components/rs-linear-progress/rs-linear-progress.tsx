@@ -1,6 +1,5 @@
-import { Component, Prop, Element, Method, h, State } from "@stencil/core"
+import { Component, Prop, Element, h, State } from "@stencil/core"
 import { MDCLinearProgress } from "@material/linear-progress"
-import { _stylingElement } from "../../utils/utils"
 
 @Component({
   tag: "rs-linear-progress",
@@ -11,34 +10,12 @@ export class RSLinearProgress {
 
   @Element() progressEl : HTMLElement
   @Prop() close : boolean = false
-  @Prop() type : string = ""
-  @Prop() reversed: boolean = false
-  @Prop() progressbarcolor : string
-  @Prop() bufferbarcolor: string = "#e6e6e6"
   @Prop() progress: number = 0
   @Prop() buffer: number = 1
   @State() className: string = "mdc-linear-progress"
 
-  @Method()
-  async setProgress(value: number) {
-    this.mdcProgress.progress= value
-  }
-  @Method()
-  async setBuffer(value: number) {
-    this.mdcProgress.buffer= value;
-  }
-  
-  @Method()
-  async stylingInnerElement(value: any) {
-    if(value) {
-      _stylingElement(this.progressEl, value)
-    }
-  }
-
   progressBar:any
   mdcProgress:any
-  innerProgressBar:any
-  bufferProgressBar:any
 
   componentDidLoad() {
     this.mdcProgress = new MDCLinearProgress(this.progressBar)
@@ -51,7 +28,7 @@ export class RSLinearProgress {
     if(style.getPropertyValue("--rs-linear-progres-reversed").trim() == 'true') {
       this.className = `${this.className} mdc-linear-progress--reversed`
     }
-    if(style.getPropertyValue("--rs-linear-progres-closed").trim() == 'true') {
+    if(this.close) {
       this.className = `${this.className} mdc-linear-progress--closed`
     }
     let bufferingDotsColor = style.getPropertyValue("--rs-linear-progress__buffering-dots--background-image").trim() || '#e6e6e6'
